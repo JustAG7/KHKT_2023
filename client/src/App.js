@@ -8,7 +8,7 @@ export default function App() {
   const location = useLocation();
   return (
     <div className="w-full">
-      {location.pathname!== "/signin" && <Header />  }
+      {(location.pathname!== "/signin" && location.pathname!== "/signup")  && <Header />  }
       <Routes>
         
         <Route path='/signin' element={<SignIn />} />
