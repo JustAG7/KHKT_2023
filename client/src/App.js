@@ -9,6 +9,7 @@ export default function App() {
   const location = useLocation();
   return (
     <div className="w-full">
+      {(location.pathname!== "/signin" && location.pathname!== "/signup" && location.pathname!== "/manage")  && <Header />  }
       <Routes>
         
         <Route path='/signin' element={<SignIn />} />
@@ -41,6 +42,8 @@ export default function App() {
             <Route path="" element={<Manage />} />
             <Route path=":id" element={<Manage />} />
         </Route>
+
+        
       </Routes>
     </div>
   )
