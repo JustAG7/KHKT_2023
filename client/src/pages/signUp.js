@@ -6,7 +6,7 @@ import {
     Typography,
   } from "@material-tailwind/react";
    
-  export function SimpleRegistrationForm() {
+  export default function SimpleRegistrationForm() {
     return (
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">

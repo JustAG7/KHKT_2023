@@ -1,5 +1,5 @@
 import Footer from '../components/Footer';
-
+import Countdown from '../components/Countdown';
 import { ChevronRightIcon, StarIcon } from '@heroicons/react/20/solid'
 
 const stats = [
@@ -94,6 +94,7 @@ export default function Example() {
   return (
     <div className="bg-white">
       <main>
+        <Countdown />
         {/* Hero section */}
         <div className="overflow-hidden pt-8 sm:pt-12 lg:relative lg:py-48">
           <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-24 lg:px-8">

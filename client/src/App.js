@@ -3,12 +3,12 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import SignIn from "./pages/signIn"
 import SignUp from "./pages/signUp"
 import Home from "./pages/Home"
+import Manage from "./pages/Manage";
 
 export default function App() {
   const location = useLocation();
   return (
     <div className="w-full">
-      {(location.pathname!== "/signin" && location.pathname!== "/signup")  && <Header />  }
       <Routes>
         
         <Route path='/signin' element={<SignIn />} />
@@ -35,6 +35,12 @@ export default function App() {
             <Route path="" element={<Tasks />} />
             <Route path=":id" element={<Task />} />
         </Route> */}
+
+        <Route path="/manage/*">
+
+            <Route path="" element={<Manage />} />
+            <Route path=":id" element={<Manage />} />
+        </Route>
       </Routes>
     </div>
   )
