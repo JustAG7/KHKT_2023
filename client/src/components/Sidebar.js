@@ -50,7 +50,7 @@ function App() {
       </Sidebar>
       <main>
         <h1 style={{ color: "black", marginLeft: "5rem" }}>
-          VietLone ế vợ
+          VietLone
         </h1>
       </main>
     </div>
