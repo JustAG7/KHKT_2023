@@ -1,6 +1,6 @@
 # KHKT_2023
 
-Cài đặt thư viện của NPM bằng cách vào thư mục Client và nhập lệnh:
+Cài đặt thư viện của NPM bằng cách vào thư mục Client và Server sau đó nhập lệnh:
 npm i
 
 Cài đặt icon gì gì đó
