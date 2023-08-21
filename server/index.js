@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 1337
+const port = 1991
 const cors = require('cors')
 const connectDB = require('./models/database')
 const morgan = require('morgan')
