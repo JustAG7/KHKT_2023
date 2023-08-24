@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 // need to add more fields
 const eventSchema = new mongoose.Schema({
     name: String,
+    password: String,
     description: String,
     date: Date,
+    participants: [type = mongoose.Schema.Types.ObjectId, ref = 'users'],
     feed: [type = mongoose.Schema.Types.ObjectId, ref = 'users']
 });
 
