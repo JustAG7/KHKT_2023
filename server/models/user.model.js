@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     name: String,
     dob: Date,
-    status: String,
     email: String,
     phone: String,
     address: String,
     avatar: String,
     department: String,
-    position: String
+    status: String,
+    events: [{type: mongoose.Schema.Types.ObjectId, ref: 'events'}],
+    department: [{type: mongoose.Schema.Types.ObjectId, ref: 'departments'}]
 });
 
 module.exports = mongoose.model('users', userSchema);

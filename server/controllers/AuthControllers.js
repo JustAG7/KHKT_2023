@@ -64,7 +64,6 @@ const register = async (req, res) => {
             address,
             avatar,
             department: departmentId._id,
-            position: 'member',
             status,
         });
         await user.save();
