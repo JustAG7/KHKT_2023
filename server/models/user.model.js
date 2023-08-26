@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     phone: String,
     address: String,
     avatar: String,
-    department: String,
     status: String,
     events: [{type: mongoose.Schema.Types.ObjectId, ref: 'events'}],
     department: [{type: mongoose.Schema.Types.ObjectId, ref: 'departments'}]
