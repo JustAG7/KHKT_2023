@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {authenticate, requireRole} = require('../helpers/roleValidator');
-const {getUser, getUsers, findByName, deleteUser} = require('../controllers/UserControllers');
+const {authenticate, requireRole} = require('../helpers/AuthValidator');
+const {getUser, getUsers, findByName, deleteUser} = require('../controllers/UserController');
 
 router.get('/', authenticate, requireRole({collection: 0, task: 0}), getUsers);
 router.get('/:id', authenticate, requireRole({collection: 0, task: 0}), getUser);

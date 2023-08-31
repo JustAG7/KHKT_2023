@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {authenticate, requireRole} = require('../helpers/roleValidator');
-const {getEvents, getEvent, addEvent, addMembersToEvent, deleteMemberFromEvent, addActivityToFeed, findEventByName, updateEvent, deleteEvent, updateStatus } = require('../controller/EventController');
+const {authenticate, requireRole} = require('../helpers/AuthValidator');
+const {getEvents, getEvent, addEvent, addMembersToEvent, deleteMemberFromEvent, addActivityToFeed, findEventByName, updateEvent, deleteEvent, updateStatus } = require('../controllers/EventController');
 
 router.get('/', authenticate, requireRole({collection: 0, task: 0}), getEvents);
 router.get('/:id', authenticate, requireRole({collection: 0, task: 0}), getEvent);
