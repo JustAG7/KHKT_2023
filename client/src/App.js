@@ -10,7 +10,8 @@ export default function App() {
   const location = useLocation();
   return (
     <div className="w-full">
-      {(location.pathname!== "/signin" && location.pathname!== "/signup" && location.pathname!== "/manage")  && <Header />  }
+      {(location.pathname === "/home")  && <Header />  }
+      
       <Routes>
         
         <Route path='/signin' element={<SignIn />} />

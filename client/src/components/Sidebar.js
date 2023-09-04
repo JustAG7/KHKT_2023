@@ -13,9 +13,15 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
+import Events from "../pages/Events";
+import Manage from "../pages/Manage";
+import Users from "../pages/Users";
+
+import {Link, useNavigate, useLocation} from 'react-router-dom';
+
 function App() {
   const { collapseSidebar } = useProSidebar();
-
+  const location = useLocation();
   return (
     <div id="app" style={({ height: "100vh" }, { display: "flex" })}>
       <Sidebar style={{ height: "100vh" }}>
@@ -37,6 +43,7 @@ function App() {
               <MenuItem icon={<PeopleOutlinedIcon />}>Item 2</MenuItem>
               <MenuItem icon={<PeopleOutlinedIcon />}>Item 3</MenuItem>
             </SubMenu>
+            
             <MenuItem icon={<PeopleOutlinedIcon />}>Item 1</MenuItem>
             <MenuItem icon={<PeopleOutlinedIcon />}>Item 2</MenuItem>
             <MenuItem icon={<PeopleOutlinedIcon />}>Item 3</MenuItem>
@@ -49,9 +56,9 @@ function App() {
         </Menu>
       </Sidebar>
       <main>
-        <h1 style={{ color: "black", marginLeft: "5rem" }}>
-          VietLone
-        </h1>
+        
+          {location.pathname == "/event" ? <Events /> : <></>}
+        
       </main>
     </div>
   );
