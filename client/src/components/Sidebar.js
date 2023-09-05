@@ -12,14 +12,13 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import EventIcon from '@mui/icons-material/Event';
 
-import Events from "../pages/Events";
-import Manage from "../pages/Manage";
-import Users from "../pages/Users";
+import TabEvent from "./TabEvent";
 
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 
-function App() {
+function SB() {
   const { collapseSidebar } = useProSidebar();
   const location = useLocation();
   return (
@@ -37,31 +36,26 @@ function App() {
             <h2>Admin</h2>
           </MenuItem>
 
-          <SubMenu icon={<HomeOutlinedIcon />} label="Home">
-            <SubMenu icon={<HomeOutlinedIcon />} label="Home">
-              <MenuItem icon={<PeopleOutlinedIcon />}>Item 1</MenuItem>
-              <MenuItem icon={<PeopleOutlinedIcon />}>Item 2</MenuItem>
-              <MenuItem icon={<PeopleOutlinedIcon />}>Item 3</MenuItem>
-            </SubMenu>
+          <MenuItem icon={<HomeOutlinedIcon />} label="Home"> Home </MenuItem>
             
-            <MenuItem icon={<PeopleOutlinedIcon />}>Item 1</MenuItem>
-            <MenuItem icon={<PeopleOutlinedIcon />}>Item 2</MenuItem>
-            <MenuItem icon={<PeopleOutlinedIcon />}>Item 3</MenuItem>
-          </SubMenu>
           <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
+          <Link to = "/event">
+            <MenuItem icon={<EventIcon />}>
+              Events
+            </MenuItem>
+          </Link>
           <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
           <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
           <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
         </Menu>
       </Sidebar>
-      <main>
+      <main className="p-10 w-full">
         
-          {location.pathname == "/event" ? <Events /> : <></>}
+          {location.pathname === "/event" || location.pathname === "/event/:id" ? <TabEvent /> : null}
         
       </main>
     </div>
   );
 }
 
-export default App;
+export default SB;
