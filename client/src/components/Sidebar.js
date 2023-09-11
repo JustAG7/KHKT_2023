@@ -17,12 +17,13 @@ import EventIcon from '@mui/icons-material/Event';
 import TabEvent from "./TabEvent";
 
 import {Link, useNavigate, useLocation} from 'react-router-dom';
+import Events from "../pages/Events";
 
 function SB() {
   const { collapseSidebar } = useProSidebar();
   const location = useLocation();
   return (
-    <div id="app" style={({ height: "100vh" }, { display: "flex" })}>
+    
       <Sidebar style={{ height: "100vh" }}>
         <Menu>
           <MenuItem
@@ -49,12 +50,8 @@ function SB() {
           <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
         </Menu>
       </Sidebar>
-      <main className="p-10 w-full">
-        
-          {location.pathname === "/event" || location.pathname === "/event/:id" ? <TabEvent /> : null}
-        
-      </main>
-    </div>
+      
+    
   );
 }
 

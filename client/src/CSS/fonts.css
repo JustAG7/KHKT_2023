@@ -1,0 +1,17 @@
+/* fonts.css */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Inter Regular'), local('Inter-Regular'), url('Inter-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Inter SemiBold'), local('Inter-SemiBold'), url('Inter-SemiBold.ttf') format('truetype');
+}
+
+/* Define additional font weights and styles as needed */

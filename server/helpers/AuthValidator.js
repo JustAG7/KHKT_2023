@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const role = [[3, 1, 1, 1], [3, 2, 3, 2], [3, 1, 3, 1], [3, 1, 2, 1]];
+const role = [[3, 1, 1, 1], 
+              [3, 2, 3, 2],
+              [3, 1, 3, 1], 
+              [3, 1, 2, 1]];
 
 function roleNum(role) {
     switch (role) {
