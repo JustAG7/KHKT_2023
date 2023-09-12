@@ -5,6 +5,9 @@ const role = [[3, 1, 1, 1],
               [3, 1, 3, 1], 
               [3, 1, 2, 1]];
 
+
+// hàng : là bảng (collection) trong database (0 -> n-1) n tính sau
+// cột : là quyền (task) trong bảng (0 -> n-1) n tính sau
 function roleNum(role) {
     switch (role) {
         case 'admin':
@@ -22,12 +25,14 @@ function roleNum(role) {
 const authenticate = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
-
+        console.log(authHeader);
+        const newToken = jwt.sign({id: '1'}, process.env.JWT_SECRET);
+        console.log(newToken);  
         if (!authHeader) {
             return res.status(401).json({error: 'Missing authorization header'});
         }
         const token = authHeader.split(' ')[1];
-
+        
 
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decodedToken;

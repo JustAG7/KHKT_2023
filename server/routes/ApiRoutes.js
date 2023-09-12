@@ -6,7 +6,7 @@ const departmentRoutes = require("./DepartmentRoutes");
 const EventRoutes = require("./EventRoutes");
 
 router.use("/users", userRoutes);
-router.use("/auth", Auth);
+router.use("/auths", Auth);
 router.use("/departments", departmentRoutes);
 router.use("/events", EventRoutes);
 

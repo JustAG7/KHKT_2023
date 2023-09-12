@@ -1,8 +1,5 @@
 const User = require('../models/user.model');
-const Auth = require('../models/auth.model');
-const Department = require('../models/department.model');
-const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
+
 
 const getUser = async (req, res) => {
     try {

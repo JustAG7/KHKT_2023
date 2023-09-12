@@ -3,6 +3,7 @@ const app = express()
 const port = 1991
 const cors = require('cors')
 const connectDB = require('./models/database')
+require('dotenv').config({path: '.env'})
 const morgan = require('morgan')
 const path = require('path')
 const routes = require('./routes/index')
@@ -11,7 +12,8 @@ const corsOptions = {
     exposedHeaders: 'Authorization',
 };
 
-// connectDB()
+connectDB()
+
 
 app.use(morgan("combined"));
 app.use(express.static(path.join(__dirname, "public")));

@@ -9,7 +9,7 @@ router.post('/', authenticate, requireRole({collection: 0, task: 1}), addEvent);
 router.put('/:id', authenticate, requireRole({collection: 0, task: 2}), addMembersToEvent);
 router.delete('/:id', authenticate, requireRole({collection: 0, task: 3}), deleteMemberFromEvent);
 router.put('/:id', authenticate, requireRole({collection: 0, task: 2}), addActivityToFeed);
-router.get('/', authenticate, requireRole({collection: 0, task: 0}), findEventByName);
+router.get('/', authenticate, requireRole({collection: 0, task: 1}), findEventByName);
 router.put('/:id', authenticate, requireRole({collection: 0, task: 2}), updateEvent);
 router.delete('/:id', authenticate, requireRole({collection: 0, task: 3}), deleteEvent);
 router.put('/:id', authenticate, requireRole({collection: 0, task: 2}), updateStatus);

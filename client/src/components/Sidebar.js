@@ -30,7 +30,7 @@ function SB() {
             icon={<MenuOutlinedIcon />}
             onClick={() => {
               collapseSidebar();
-            }}
+            }}  
             style={{ textAlign: "center" }}
           >
             {" "}
