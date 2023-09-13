@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "65018ca8e031b23c018131d6"
+  },
+  "name": "Phong Võ",
+  "dob": "20/01/2004",
+  "email": "vophong2205@gmail.com",
+  "phone": "8175982635",
+  "address": "",
+  "avatar": "",
+  "status": "active",
+  "date_joined": "01/20/2023",
+  "events": [],
+  "departments": []
+},
+{
+  "_id": {
+    "$oid": "65018e8ce031b23c018131e2"
+  },
+  "name": "Uyên Như",
+  "dob": "06/02/2006",
+  "email": "lenguyenuyennhu0602@gmail.com",
+  "phone": "5632532515",
+  "address": "",
+  "avatar": "",
+  "status": "active",
+  "date_joined": "10/07/2021",
+  "events": [],
+  "departments": []
+},
+{
+  "_id": {
+    "$oid": "65018f39e031b23c018131e8"
+  },
+  "name": "Phạm Bảo Thi",
+  "dob": "06/09/2007",
+  "email": "thibp0609@gmail.com",
+  "phone": "613564415",
+  "address": "",
+  "avatar": "",
+  "status": "active",
+  "date_joined": "10/09/2021",
+  "events": [],
+  "departments": []
+}]
