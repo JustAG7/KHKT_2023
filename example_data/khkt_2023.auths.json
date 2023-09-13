@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "647d56cc847d13b58548fa8c"
+  },
+  "username": "justa",
+  "password": "$2a$10$xzDFbsy04.lvIimirIRll.8S6P8xeR.pHxb6LnqQMQAfadh8zPzK6",
+  "role": "admin",
+  "user": {
+    "$oid": "647d5743847d13b58548faa6"
+  }
+},
+{
+  "_id": {
+    "$oid": "65018b57e031b23c018131d2"
+  },
+  "username": "uno",
+  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+  "role": "manager",
+  "user": {
+    "$oid": "65018b57e031b23c018131d2"
+  }
+},
+{
+  "_id": {
+    "$oid": "65018bece031b23c018131d4"
+  },
+  "username": "bthi",
+  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+  "role": "member",
+  "user": {
+    "$oid": "65018bece031b23c018131d4"
+  }
+}]

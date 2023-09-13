@@ -6,6 +6,6 @@ const {getUser, getUsers, findByName, deleteUser} = require('../controllers/User
 router.get('/', authenticate, requireRole({collection: 3, task: 1}), getUsers);
 router.get('/:id', authenticate, requireRole({collection: 3, task: 1}), getUser);
 router.get('/', authenticate, requireRole({collection: 3, task: 1}), findByName);
-router.delete('/:id', authenticate, requireRole({collection: 3, task: 3}), deleteUser);
+router.delete('/:id', authenticate, requireRole({collection: 3, task: 1}), deleteUser);
 
 module.exports = router;

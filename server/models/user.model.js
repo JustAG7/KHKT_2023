@@ -8,8 +8,9 @@ const userSchema = new mongoose.Schema({
     address: String,
     avatar: String,
     status: String,
+    date_joined: Date,
     events: [{type: mongoose.Schema.Types.ObjectId, ref: 'events'}],
-    department: [{type: mongoose.Schema.Types.ObjectId, ref: 'departments'}]
+    departments: [{type: mongoose.Schema.Types.ObjectId, ref: 'departments'}]
 });
 
 module.exports = mongoose.model('users', userSchema);
