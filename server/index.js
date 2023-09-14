@@ -23,8 +23,16 @@ app.use(cors(corsOptions));
 
 routes(app);
 
+app.get('/logout', (req, res) => {
+    // Xóa cookie bằng cách đặt lại nó với thời gian hết hạn 0
+    res.cookie('yourCookieName', '', { expires: new Date(0), path: '/' });
+    res.redirect('/signin'); // Chuyển hướng đến trang đăng nhập sau khi xóa cookie
+  });
+  
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
 
 

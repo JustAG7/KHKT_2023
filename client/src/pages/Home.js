@@ -1,7 +1,11 @@
 import Footer from '../components/Footer';
 import Countdown from '../components/Countdown';
 import { ChevronRightIcon, StarIcon } from '@heroicons/react/20/solid'
+import cookie from 'cookie'
+import Cookies from 'js-cookie'
+import { useEffect, useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
 const stats = [
   { label: 'Founded', value: '2021' },
   { label: 'Employees', value: '5' },
@@ -91,6 +95,12 @@ const footerNavigation = {
 }
 
 export default function Example() {
+  const cookies = cookie.parse(document.cookie)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(!Cookies.get("token")) navigate("/signin");
+  }, [])
   return (
     <div className="bg-white">
       <main>

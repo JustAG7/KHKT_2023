@@ -1,44 +1,42 @@
-import {Button, Card, CardBody, CardFooter, Typography,} from "@material-tailwind/react";
-import {RocketLaunchIcon} from "@heroicons/react/24/solid";
-import {ArrowLongRightIcon} from "@heroicons/react/24/outline";
-import {Link} from "react-router-dom";
-
-export default function ProjectCard(props) {
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Typography,
+    Button,
+    Tooltip,
+    IconButton,
+  } from "@material-tailwind/react";
+   import CountDown from "./Countdown";
+  export default function BookingCard() {
     return (
-        <Card className="mt-6 w-96">
-            <CardBody>
-                <RocketLaunchIcon className="text-blue-500 w-12 h-12 mb-4"/>
-                {/* row of 2 compone */}
-                <Typography variant="h5" color="blue-gray" className="mb-2">
-                    {props.title}
-                </Typography>
-                <>
-                    <Typography color="blue-gray" className="font-medium">
-                        {new Date(props.due_date).toLocaleDateString()}
-                    </Typography>
-                    <Typography color="blue-gray" className="font-medium">
-                        {() => {
-                            switch (props.status) {
-                                case "in progress":
-                                    return "In Progress";
-                                case "completed":
-                                    return "Completed";
-                            }
-                        }}
-                    </Typography>
-                </>
-                <Typography>
-                    {props.description}
-                </Typography>
-            </CardBody>
-            <CardFooter className="pt-0">
-                <Link to={`/projects/${props.id}`}>
-                    <Button size="sm" variant="text" className="flex items-center gap-2">
-                        View
-                        <ArrowLongRightIcon strokeWidth={2} className="w-4 h-4"/>
-                    </Button>
-                </Link>
-            </CardFooter>
-        </Card>
+      <Card className="w-80 shadow-lg">
+        <CardHeader floated={false} color="blue-gray">
+          <img
+            src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            alt="ui/ux review check"
+          />
+          <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+        </CardHeader>
+        <CardBody>
+          <div className="mb-3 flex items-center justify-between">
+            <Typography variant="h5" color="blue-gray" className="font-medium">
+              Wooden House, Florida
+            </Typography>
+            
+          </div>
+          <Typography color="gray">
+            Enter a freshly updated and thoughtfully furnished peaceful home
+            surrounded by ancient trees, stone walls, and open meadows.
+          </Typography>
+          <CountDown />
+        </CardBody>
+        <CardFooter className="pt-3">
+          <Button size="lg" fullWidth={true}>
+            Reserve
+          </Button>
+        </CardFooter>
+      </Card>
     );
-}
+  }

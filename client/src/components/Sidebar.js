@@ -7,51 +7,69 @@ import {
 } from "react-pro-sidebar";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import EventIcon from '@mui/icons-material/Event';
+import EventIcon from "@mui/icons-material/Event";
 
-import TabEvent from "./TabEvent";
+import Cookies from "js-cookie";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-import {Link, useNavigate, useLocation} from 'react-router-dom';
+import { useState } from "react";
+import cookie from "cookie";
+
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Events from "../pages/Events";
+import { useEffect } from "react";
 
 function SB() {
   const { collapseSidebar } = useProSidebar();
-  const location = useLocation();
-  return (
+  const navigate = useNavigate();
+  const [role, setRole] = useState(""); // Initialize role with an empty string
+  useEffect(() => {
+    const userRole =  Cookies.get("role");
+    if (userRole) {
+      setRole(userRole);
+    }
+  }, []);
+  const handleLogOut = () => {
     
-      <Sidebar style={{ height: "100vh" }}>
-        <Menu>
-          <MenuItem
-            icon={<MenuOutlinedIcon />}
-            onClick={() => {
-              collapseSidebar();
-            }}  
-            style={{ textAlign: "center" }}
-          >
-            {" "}
-            <h2>Admin</h2>
-          </MenuItem>
+    Cookies.remove("token", { path: "/" });
+    Cookies.remove("role", { path: "/" });
 
-          <MenuItem icon={<HomeOutlinedIcon />} label="Home"> Home </MenuItem>
-            
+    navigate("/signin");
+  };
+
+  return (
+    <Sidebar style={{ height: "100vh" }}>
+      <Menu>
+        <MenuItem
+          icon={<MenuOutlinedIcon />}
+          onClick={() => {
+            collapseSidebar();
+          }}
+          style={{ textAlign: "center" }}
+        >
+          <h2>{role}</h2>
+        </MenuItem>
+        <Link to="/home">
+          <MenuItem icon={<HomeOutlinedIcon />} label="Home">
+            Home
+          </MenuItem>
+        </Link>
+        <Link to="/department">
           <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-          <Link to = "/event">
-            <MenuItem icon={<EventIcon />}>
-              Events
-            </MenuItem>
-          </Link>
-          <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
-        </Menu>
-      </Sidebar>
-      
-    
+        </Link>
+        <Link to="/event">
+          <MenuItem icon={<EventIcon />}>Event</MenuItem>
+        </Link>
+        <Link to="/setting">
+          <MenuItem icon={<SettingsIcon />}>Setting</MenuItem>
+        </Link>
+        <MenuItem icon={<LogoutIcon />} onClick={handleLogOut}>
+          Log Out
+        </MenuItem>
+      </Menu>
+    </Sidebar>
   );
 }
 

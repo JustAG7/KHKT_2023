@@ -17,7 +17,7 @@ export default function Example() {
 
   return (
     <header className="bg-white transparent">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="bg-[url(https://file.rendit.io/n/DIeyO2MrCNcn9OD2NAd5.png)] bg-cover bg-50%_50% bg-blend-normal bg-no-repeat h-screen flex flex-row justify-between  shrink-0 items-start pt-8 pl-10 pr-20">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>

@@ -26,7 +26,6 @@ function roleNum(role) {
 const authenticate = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
-
          
         if (!authHeader) {
             return res.status(401).json({error: 'Missing authorization header'});
