@@ -22,7 +22,7 @@ export default function SignIn() {
           'username': e.target.email.value,
           'password': e.target.password.value
         });
-      
+        console.log(data)
         let config = {
           method: 'post',
           maxBodyLength: Infinity,
