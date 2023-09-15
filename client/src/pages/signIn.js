@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookie from "cookie";
-import Cookies from "js-cookie";
+
 
 
 export default function SignIn() {
@@ -11,7 +11,8 @@ export default function SignIn() {
     const navigate = useNavigate();
     const cookies = cookie.parse(document.cookie);
     useEffect(() => {
-        if(Cookies.get("token")) navigate("/home");
+
+        if(cookies.token) navigate("/home");
         
     }, []);
 
@@ -22,7 +23,6 @@ export default function SignIn() {
           'username': e.target.email.value,
           'password': e.target.password.value
         });
-        console.log(data)
         let config = {
           method: 'post',
           maxBodyLength: Infinity,
@@ -34,9 +34,20 @@ export default function SignIn() {
         };
         axios.request(config).then((res) => {
           const jwt = res.headers.authorization.split(" ")[1];
-          // 60 * 60 * 24 * 7, 1 weeks
-          Cookies.set("token", jwt, { expires: 7 });
-          Cookies.set("role", res.data.role, { expires: 7 });
+          console.log(jwt)
+            document.cookie = cookie.serialize("token", jwt, {
+                maxAge: 60 * 60 * 24 * 7, // 1 week
+                path: "/",
+            });
+            document.cookie = cookie.serialize("role", res.data.role, {
+                maxAge: 60 * 60 * 24 * 7, // 1 week
+                path: "/",
+            });
+            document.cookie = cookie.serialize("id", res.data.id, {
+                maxAge: 60 * 60 * 24 * 7, // 1 week
+                path: "/",
+            });
+
           navigate("/home");
         }).catch((err) => {
           alert(err);

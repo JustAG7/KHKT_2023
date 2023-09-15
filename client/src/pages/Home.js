@@ -99,7 +99,7 @@ export default function Example() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!Cookies.get("token")) navigate("/signin");
+    if(!cookies.token) navigate("/signin");
   }, [])
   return (
     <div className="bg-white">
