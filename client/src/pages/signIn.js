@@ -2,17 +2,17 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, Input, Typogr
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import cookie from "cookie";
+import Cookies from "js-cookie";
 
 
 
 export default function SignIn() {
 
     const navigate = useNavigate();
-    const cookies = cookie.parse(document.cookie);
     useEffect(() => {
-
-        if(cookies.token) navigate("/home");
+      if(Cookies.get("token")){
+        navigate("/home");
+      }
         
     }, []);
 
@@ -34,19 +34,9 @@ export default function SignIn() {
         };
         axios.request(config).then((res) => {
           const jwt = res.headers.authorization.split(" ")[1];
-          console.log(jwt)
-            document.cookie = cookie.serialize("token", jwt, {
-                maxAge: 60 * 60 * 24 * 7, // 1 week
-                path: "/",
-            });
-            document.cookie = cookie.serialize("role", res.data.role, {
-                maxAge: 60 * 60 * 24 * 7, // 1 week
-                path: "/",
-            });
-            document.cookie = cookie.serialize("id", res.data.id, {
-                maxAge: 60 * 60 * 24 * 7, // 1 week
-                path: "/",
-            });
+          Cookies.set("token", jwt, { expires: 7 });
+          Cookies.set("role", res.data.role, { expires: 7 });
+          Cookies.set("id", res.data.id, { expires: 7 });
 
           navigate("/home");
         }).catch((err) => {
@@ -68,7 +58,7 @@ export default function SignIn() {
       
 
     // END: abpxx6d04wxr
-    if (cookies.token) return <div><h1>Loading...</h1></div>
+    if (Cookies.get('token')) return <div><h1>Loading...</h1></div>
     return (
         <div className="flex justify-evenly items-center  h-screen">
             <div className="flex justify-center items-center w-full max-w-md">

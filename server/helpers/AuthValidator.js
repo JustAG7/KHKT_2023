@@ -15,7 +15,7 @@ function roleNum(role) {
             return 1;
         case 'manager':
             return 2;
-        case 'employee':
+        case 'member':
             return 3;
         default:
             return 4;
