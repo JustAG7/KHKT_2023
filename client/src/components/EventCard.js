@@ -9,9 +9,9 @@ import {
     IconButton,
   } from "@material-tailwind/react";
    import CountDown from "./Countdown";
-  export default function BookingCard() {
+  export default function BookingCard(props) {
     return (
-      <Card className="w-60 shadow-lg">
+      <Card className="w-80 shadow-lg">
         <CardHeader floated={false} color="blue-gray">
           <img
             src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -22,19 +22,23 @@ import {
         <CardBody>
           <div className="mb-3 flex items-center justify-between">
             <Typography variant="h5" color="blue-gray" className="font-medium">
-              Wooden House, Florida
+              {props.name}
             </Typography>
             
           </div>
           <Typography color="gray">
-            Enter a freshly updated and thoughtfully furnished peaceful home
-            surrounded by ancient trees, stone walls, and open meadows.
+            {props.description}
           </Typography>
-          <CountDown />
+          <Typography color="gray">
+            Date: {props.date}
+          </Typography>
+          <CountDown 
+            date={props.date}
+          />
         </CardBody>
         <CardFooter className="pt-3">
           <Button size="lg" fullWidth={true}>
-            Reserve
+            Join
           </Button>
         </CardFooter>
       </Card>

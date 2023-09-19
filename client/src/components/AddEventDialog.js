@@ -10,12 +10,13 @@ import {
   Input,
   Checkbox,
 } from "@material-tailwind/react";
+import Datepicker from "react-tailwindcss-datepicker";
  
 export default function DialogWithForm() {
     const [open, setOpen] = React.useState(false);
     const [eventName, setEventName] = React.useState("");
     const [eventDescription, setEventDescription] = React.useState("");
-    const [eventDate, setEventDate] = React.useState("");
+    const [date,setDate] = React.useState(null);
     const [eventPassword, setEventPassword] = React.useState("");
     const handleOpen = () => setOpen((cur) => !cur);
  
@@ -28,7 +29,7 @@ export default function DialogWithForm() {
         handler={handleOpen}
         className="bg-transparent shadow-none"
       >
-        <Card className="mx-auto w-full max-w-[24rem]">
+        <Card className="mx-auto w-full max-w-[25rem]">
           <CardHeader
             variant="gradient"
             color="blue"
@@ -39,11 +40,26 @@ export default function DialogWithForm() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="Email" size="lg" />
-            <Input label="Password" size="lg" />
+            <Input label="Name" size="lg" 
+              required
+              onChange={(e) => setEventName(e.target.value)}
+            />
+            <Input label="Password" type="password" size="lg"
+              required
+              onChange={(e) => setEventPassword(e.target.value)}
+            />
+            <Input label="Description" type="text" size="lg"
+              onChange={(e) => setEventDescription(e.target.value)}
+            />
+            <Input label="Date" type="date" size="lg" 
+              required
+              onChange={(e) => 
+                setDate(new Date(e.target.value).getTime())
+              }
+            />
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" onClick={handleOpen} fullWidth>
+            <Button type="submit" variant="gradient" onClick={handleOpen} fullWidth>
               Add Event
             </Button>
           </CardFooter>

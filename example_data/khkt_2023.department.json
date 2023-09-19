@@ -1,0 +1,35 @@
+[
+  {
+    "_id": {
+      "$oid": "65018ca8e031b23c018131d6"
+    },
+    "name": "Phong Võ",
+    "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+    "description": "",
+    "date": "29/09/2023",
+    "manager": [],
+    "member": []
+  },
+  {
+    "_id": {
+      "$oid": "65018e8ce031b23c018131e2"
+    },
+    "name": "Uyên Như",
+    "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+    "description": "",
+    "date": "30/11/2023",
+    "manager": [],
+    "member": []
+  },
+  {
+    "_id": {
+      "$oid": "65018f39e031b23c018131e8"
+    },
+    "name": "Phạm Bảo Thi",
+    "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+    "description": "",
+    "date": "20/09/2023",
+    "manager": [],
+    "member": []
+  }
+]
