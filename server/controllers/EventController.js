@@ -152,4 +152,23 @@ const updateStatus = async (req, res) => {
     }
 }
 
-module.exports = { getEvents, getEvent, addEvent, addMembersToEvent, deleteMemberFromEvent, addActivityToFeed, findEventByName, updateEvent, deleteEvent, updateStatus };
+const checkPassword = async (req, res) => {
+    try {
+        const { password } = req.body;
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+        const isMatch = await bcrypt.compare(password, event.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: 'Wrong password' });
+        }
+        res.json({ message: 'Password is correct', event: event });
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+module.exports = { getEvents, getEvent, addEvent, addMembersToEvent, deleteMemberFromEvent, addActivityToFeed, findEventByName, updateEvent, deleteEvent, updateStatus, checkPassword };

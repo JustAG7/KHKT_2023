@@ -20,7 +20,6 @@ export default function App() {
         <Sidebar />
         <div className="flex-1 p-10">
           <Routes>
-            <Route path="/" element={<MainPage />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/home" element={<Home />} />
             

@@ -12,6 +12,7 @@ import axios from "axios";
 export default function Events() {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
+  
   useEffect(() => {
     if(!Cookies.get('token')){
       navigate('/signin')

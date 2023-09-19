@@ -6,7 +6,7 @@ import {
     TabPanel,
   } from "@material-tailwind/react";
 import ActivityFeed from "./ActivitiesFeed";
-import {Link,Routes,Route} from 'react-router-dom';
+import Map from "./Map"
   export default function TabsDefault() {
     const data = [
       {
@@ -24,10 +24,7 @@ import {Link,Routes,Route} from 'react-router-dom';
       {
         label: "Map",
         value: "map",
-        desc: `We're not always in the position that we want to be at.
-        We're constantly growing. We're constantly making mistakes. We're
-        constantly trying to express ourselves and actualize our dreams.`,
-        url: '/map'
+        desc: <Map />,
       },
       {
         label: "Participants",
@@ -63,7 +60,6 @@ import {Link,Routes,Route} from 'react-router-dom';
             {data.map(({ value, desc,url }) => (
               
                 <TabPanel key={value} value={value}>
-                    
                     {desc}
                 </TabPanel>
               
