@@ -1,6 +1,4 @@
-import TabEvent from "../components/TabEvent";
 import EventCard from "../components/EventCard";
-import { Button } from "@material-tailwind/react";
 import Cookies from 'js-cookie'
 import { useNavigate } from "react-router-dom";
 import AddEvent from "../components/AddEventDialog";
@@ -12,7 +10,7 @@ import axios from "axios";
 export default function Events() {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
-  
+  const ipAddress = window.location.hostname;
   useEffect(() => {
     if(!Cookies.get('token')){
       navigate('/signin')
@@ -20,7 +18,7 @@ export default function Events() {
   })
 
   useEffect(() => {
-    axios.get(`http://localhost:1991/api/events/`, { headers: { Authorization: `Bearer ${Cookies.get('token')}` } })
+    axios.get(`http://${ipAddress}:1991/api/events/`, { headers: { Authorization: `Bearer ${Cookies.get('token')}` } })
       .then(res => {
         setEvents(res.data);
         console.log(res.data);
@@ -42,6 +40,7 @@ export default function Events() {
 
       <div className="flex space-x-10">
           {events.map((event) => (
+            
             <EventCard
               key={event._id}
               name={event.name}
@@ -49,7 +48,9 @@ export default function Events() {
               date={event.date}
               password={event.password}
               id={event._id}
+              isAccepted={event.participants.includes(Cookies.get('id'))}
             />
+            
           ))}
       </div>
     </div>

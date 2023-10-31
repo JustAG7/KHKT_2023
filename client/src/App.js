@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Setting from "./pages/Setting";
 import Events from "./pages/Events";
 import Sidebar from "./components/Sidebar";
+import Users from "./pages/Users";
 
 export default function App() {
   const location = useLocation();
@@ -31,7 +32,7 @@ export default function App() {
               <Route path="" element={<Setting />} />
               <Route path=":id" element={<Setting />} />
             </Route>
-            
+            <Route path="/users" element={<Users />} />
           </Routes>
         </div>
       </div>

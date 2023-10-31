@@ -17,6 +17,8 @@ export default function SignIn() {
     }, []);
 
     function handleSubmit(e) {
+        const ipAddress = window.location.hostname;
+        console.log(ipAddress);
         e.preventDefault();
         const qs = require('qs');
         let data = qs.stringify({
@@ -26,7 +28,7 @@ export default function SignIn() {
         let config = {
           method: 'post',
           maxBodyLength: Infinity,
-          url: (!process.env.API_URI) ? 'http://localhost:1991/api/auths/login' : process.env.API_URI + '/api/auths/login',
+          url: (!process.env.API_URI) ? `http://${ipAddress}:1991/api/auths/login` : process.env.API_URI + '/api/auths/login',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },

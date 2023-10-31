@@ -77,4 +77,23 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = {login, register};
+// const findByName = async (req, res) => {
+//     const { page = 1, limit = 9 } = req.query;
+//     const { search } = req.query;
+//     try {
+//         const users = await User.find({ name: { $regex: search, $options: 'i' } }).limit(limit);
+//         res.json(users);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// }
+const findByUser = async (req, res) => {
+    try{
+        const {username} = req.query;
+        const user = await Auth.findOne({username: username});
+        res.json(user);
+    } catch (error) {
+        // res.json(user);
+    }
+}
+module.exports = {login, register, findByUser};

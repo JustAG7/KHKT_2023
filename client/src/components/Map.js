@@ -132,7 +132,7 @@ export default function App() {
     <div className="App">
       <LoadScript
         id="script-loader"
-        googleMapsApiKey="AIzaSyAPTw_Oe2OHhh72PwI1--sMypE4u0YsZQY"
+        googleMapsApiKey=""
         libraries={["geometry"]}
       >
         {currentPosition && (
@@ -153,7 +153,6 @@ export default function App() {
               onUnmount={onUnmount}
             />
 
-            {/* Add markers to the map */}
             {markers.map((marker, index) => (
               <Marker
                 key={index}

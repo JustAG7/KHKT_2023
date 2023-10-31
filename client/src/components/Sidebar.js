@@ -25,9 +25,10 @@ function SB() {
   const navigate = useNavigate();
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
+  const ipAddress = window.location.hostname;
   useEffect(() => {
     const userRole = Cookies.get("role");
-    axios.get(`http://localhost:1991/api/users/${Cookies.get("id")}`, {
+    axios.get(`http://${ipAddress}:1991/api/users/${Cookies.get("id")}`, {
 
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,

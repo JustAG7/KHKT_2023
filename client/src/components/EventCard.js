@@ -9,8 +9,8 @@ import CountDown from "./Countdown";
 export default function EventCard(props) {
   const [open, setOpen] = useState(false);
   const [password, setPassword] = useState("");
-  const [isValidPassword, setIsValidPassword] = useState(false);
-
+  const [isValidPassword, setIsValidPassword] = useState(props.isAccepted);
+  const ipAddress = window.location.hostname;
   const handleOpen = () => {
     if (open) {
       setOpen(false);
@@ -24,14 +24,21 @@ export default function EventCard(props) {
     e.preventDefault();
     axios
       .post(
-        `http://localhost:1991/api/events/${props.id}`,
+        `http://${ipAddress}:1991/api/events/${props.id}`,
         {
           password: password,
         },
         { headers: { Authorization: `Bearer ${Cookies.get("token")}` } }
       )
       .then((res) => {
+        axios.put(`http://${ipAddress}:1991/api/events/${props.id}`, {
+          id: Cookies.get("id"),
+        },{
+          headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+        }
+        );
         setIsValidPassword(true);
+        
       })
       .catch((err) => {
         alert(err);
@@ -59,7 +66,9 @@ export default function EventCard(props) {
       </CardBody>
       <CardFooter className="pt-3">
         {isValidPassword ? (
-          <Link to={`/event/${props.id}`}>Go to Event Details</Link>
+          <Link to={`/event/${props.id}`  }
+            className=" text-white bg-gradient-to-tr from-green-800 to-green-900 hover:from-light-blue-600 hover:to-light-blue-700 px-4 py-2 rounded"
+          >Go to Event Details</Link>
         ) : (
           <div>
             <Button onClick={handleOpen}>Join</Button>

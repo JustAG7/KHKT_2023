@@ -47,18 +47,26 @@ const addEvent = async (req, res) => {
 const addMembersToEvent = async (req, res) => {
 
     try{
-        const {members} = req.body;
-        const eventId = await Event.findOne({name: event});
-        const event = await Event.findByIdAndUpdate(
-            eventId,
-            {$push: {members: members}}, {new: true}
-        );
-        const user = await members.map((user =>{
-            User.findByIdAndUpdate(
-                user,
-                {$push: {event: eventId}}, {new: true}
+        const eventId = req.params.id;
+        const {id} = req.body;
+        const isMemberInParticipant = await Event.findOne(
+            {participants: id, _id: eventId}
+        )
+        if(!isMemberInParticipant){
+            const event = await Event.findByIdAndUpdate(
+                eventId,
+                {$push: {participants: id}}, {new: true}
             );
-        }))
+            const user = await User.findByIdAndUpdate(
+                id,
+                {$push: {events: eventId}}, {new: true}
+            )
+            await event.save();
+            await user.save();
+            res.json({ message: 'Member added to event successfully' });
+            console.log("Member added to event successfully");
+        }
+        
     }
     catch (error) {
         res.status(500).json({ error: error.message });

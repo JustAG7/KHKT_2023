@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {authenticate, requireRole} = require('../helpers/Auth\Validator');
+const {authenticate, requireRole} = require('../helpers/AuthValidator');
 const {getDepartments, getDepartment, updateMemberToManager, addUsersToDepartment, updateManagerToMember, deleteUserFromDepartment, updateMemberToAnotherDepartment} = require('../controllers/DepartmentController');
 
 router.get('/', authenticate, requireRole({collection: 0, task: 0}), getDepartments);
