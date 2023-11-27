@@ -1,168 +1,71 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
-import { LoadScript, GoogleMap, Polygon, Marker } from "@react-google-maps/api";
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polygon, useMapEvents } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-import "../CSS/map.css";
+// Import marker icon image
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-export default function App() {
-  // Store Polygon path in state
-  const [path, setPath] = useState([]);
+// Configure the marker icon path
+let DefaultIcon = L.icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconAnchor: [12, 41], // icon position
+  popupAnchor: [1, -34], // popup position
+  shadowSize: [41, 41], // shadow size
+});
 
-  // Store the user's current position
-  const [currentPosition, setCurrentPosition] = useState(null);
+L.Marker.prototype.options.icon = DefaultIcon;
 
-  // Store the markers in state
-  const [markers, setMarkers] = useState([]);
-
-  // Define refs for Polygon instance and listeners
-  const polygonRef = useRef(null);
-  const listenersRef = useRef([]);
-
-  // Call setPath with new edited path
-  const onEdit = useCallback(() => {
-    if (polygonRef.current) {
-      const nextPath = polygonRef.current
-        .getPath()
-        .getArray()
-        .map(latLng => {
-          return { lat: latLng.lat(), lng: latLng.lng() };
-        });
-      setPath(nextPath);
-    }
-  }, [setPath]);
-
-  // Bind refs to current Polygon and listeners
-  const onLoad = useCallback(
-    polygon => {
-      polygonRef.current = polygon;
-      const path = polygon.getPath();
-      listenersRef.current.push(
-        path.addListener("set_at", onEdit),
-        path.addListener("insert_at", onEdit),
-        path.addListener("remove_at", onEdit)
-      );
+function LocationMarker() {
+  const [position, setPosition] = useState(null);
+  const map = useMapEvents({
+    click() {
+      map.locate();
     },
-    [onEdit]
+    locationfound(e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+    },
+  });
+
+  return position === null ? null : (
+    <>
+      <Marker position={position}>
+        <Popup>You are here</Popup>
+      </Marker>
+      
+    </>
   );
+}
 
-  // Clean up refs
-  const onUnmount = useCallback(() => {
-    listenersRef.current.forEach(lis => lis.remove());
-    polygonRef.current = null;
-  }, []);
-
-  // Get the user's current location using geolocation API
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        setCurrentPosition({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-        
-        // Calculate a new polygon path near the current center
-        const newPolygonPath = [
-          { lat: position.coords.latitude + 0.01, lng: position.coords.longitude - 0.01 },
-          { lat: position.coords.latitude - 0.01, lng: position.coords.longitude - 0.01 },
-          { lat: position.coords.latitude - 0.01, lng: position.coords.longitude + 0.01 }
-        ];
-        setPath(newPolygonPath);
-      },
-      error => {
-        console.error("Error getting user's location:", error);
-      }
-    );
-  }, []);
-
-  // Function to check if a marker is inside the polygon
-  const checkMarkerInsidePolygon = (marker) => {
-    if (window.google && window.google.maps && window.google.maps.geometry) {
-      const point = new window.google.maps.LatLng(marker.lat, marker.lng);
-      const polygon = new window.google.maps.Polygon({
-        paths: path,
-      });
-      const isInside = window.google.maps.geometry.poly.containsLocation(point, polygon);
-      return isInside;
-    }
-    return false;
-  };
-
-  const logMarkerLocation = (marker) => {
-    const isInside = checkMarkerInsidePolygon(marker);
-    if (isInside) {
-      console.log(`Marker at (${marker.lat}, ${marker.lng}) is INSIDE the polygon.`);
-    } else {
-      console.log(`Marker at (${marker.lat}, ${marker.lng}) is OUTSIDE the polygon.`);
-    }
-  };
-
-  // Add three sample markers
-  useEffect(() => {
-    if (currentPosition) {
-      // Add three markers for testing (you can add more markers as needed)
-      const marker0 = {
-        lat: currentPosition.lat,
-        lng: currentPosition.lng,
-      }
-      const marker1 = {
-        lat: currentPosition.lat + 0.005,
-        lng: currentPosition.lng + 0.005,
-      };
-      const marker2 = {
-        lat: currentPosition.lat - 0.005,
-        lng: currentPosition.lng - 0.005,
-      };
-      const marker3 = {
-        lat: currentPosition.lat - 0.005,
-        lng: currentPosition.lng + 0.005,
-      };
-      setMarkers([marker0, marker1, marker2, marker3]);
-    }
-  }, [currentPosition]);
-
-  // Log the location of each marker when the path or markers change
-  useEffect(() => {
-    markers.forEach((marker) => {
-      logMarkerLocation(marker);
-    });
-  }, [path, markers]);
-
-  console.log("The path state is", path);
+export default function Map() {
+  const [mapCenter, setMapCenter] = useState({ lat: 16.030615, lng: 108.214129});
+  const [mapZoom, setMapZoom] = useState(20);
 
   return (
-    <div className="App">
-      <LoadScript
-        id="script-loader"
-        googleMapsApiKey=""
-        libraries={["geometry"]}
-      >
-        {currentPosition && (
-          <GoogleMap
-            mapContainerClassName="App-map"
-            center={currentPosition}
-            zoom={15}
-            version="weekly"
-            on
-          >
-            <Polygon
-              editable
-              draggable
-              path={path}
-              onMouseUp={onEdit}
-              onDragEnd={onEdit}
-              onLoad={onLoad}
-              onUnmount={onUnmount}
-            />
-
-            {markers.map((marker, index) => (
-              <Marker
-                key={index}
-                position={marker}
-                onClick={() => logMarkerLocation(marker)}
-              />
-            ))}
-          </GoogleMap>
-        )}
-      </LoadScript>
-    </div>
+    <MapContainer
+      center={mapCenter}
+      zoom={mapZoom}
+      scrollWheelZoom={false}
+      style={{ width: '100%', height: '400px' }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Polygon
+        positions={[
+          [16.030601, 108.213715],
+          
+          [16.029904, 108.213861],
+          [16.030510, 108.214921],
+          [16.030893, 108.214613],
+        ]}
+        color="blue"
+      />
+      <LocationMarker />
+    </MapContainer>
   );
 }

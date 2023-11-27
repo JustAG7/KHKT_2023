@@ -1,36 +1,55 @@
 [{
   "_id": {
-    "$oid": "65018ca8e031b23c018131d6"
+    "$oid": "65074251dbaa30bfe78fa689"
   },
   "name": "Phong Võ",
-  "password": "",
+  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
   "description": "",
-  "start": "10/09/2023",
-  "finish": "10/10/2023",
-  "participants": [],
+  "date": "29/09/2023",
+  "participants": [
+    {
+      "$oid": "65018ca8e031b23c018131d6"
+    },
+    {
+      "$oid": "65018e8ce031b23c018131e2"
+    }
+  ],
+  "__v": 1,
   "feed": []
 },
 {
   "_id": {
-    "$oid": "65018e8ce031b23c018131e2"
+    "$oid": "65074268dbaa30bfe78fa68a"
   },
   "name": "Uyên Như",
-  "password": "",
+  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
   "description": "",
-  "start": "10/09/2023",
-  "finish": "10/20/2023",
-  "participants": [],
+  "date": "30/11/2023",
+  "participants": [
+    {
+      "$oid": "65018ca8e031b23c018131d6"
+    },
+    {
+      "$oid": "65018e8ce031b23c018131e2"
+    }
+  ],
   "feed": []
 },
 {
   "_id": {
-    "$oid": "65018f39e031b23c018131e8"
+    "$oid": "65074275dbaa30bfe78fa68b"
   },
   "name": "Phạm Bảo Thi",
-"password": "",
+  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
   "description": "",
-  "start": "10/09/2023",
-  "finish": "10/22/2023",
-  "participants": [],
+  "date": "20/09/2023",
+  "participants": [
+    {
+      "$oid": "65018ca8e031b23c018131d6"
+    },
+    {
+      "$oid": "65018e8ce031b23c018131e2"
+    }
+  ],
   "feed": []
 }]
