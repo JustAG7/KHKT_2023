@@ -1,55 +1,42 @@
-[{
-  "_id": {
-    "$oid": "65074251dbaa30bfe78fa689"
-  },
-  "name": "Phong Võ",
-  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
-  "description": "",
-  "date": "29/09/2023",
-  "participants": [
-    {
-      "$oid": "65018ca8e031b23c018131d6"
+[
+  {
+    "_id": {
+      "$oid": "65074251dbaa30bfe78fa689"
     },
-    {
-      "$oid": "65018e8ce031b23c018131e2"
-    }
-  ],
-  "__v": 1,
-  "feed": []
-},
-{
-  "_id": {
-    "$oid": "65074268dbaa30bfe78fa68a"
+    "name": "KHKT 2023",
+    "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+    "description": "",
+    "date": "29/09/2023",
+    "participants": [
+      {
+        "$oid": "65018e8ce031b23c018131e2"
+      },
+      {
+        "$oid": "65018ca8e031b23c018131d6"
+      }
+    ],
+    "feed": []
   },
-  "name": "Uyên Như",
-  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
-  "description": "",
-  "date": "30/11/2023",
-  "participants": [
-    {
-      "$oid": "65018ca8e031b23c018131d6"
+  {
+    "_id": {
+      "$oid": "65074268dbaa30bfe78fa68a"
     },
-    {
-      "$oid": "65018e8ce031b23c018131e2"
-    }
-  ],
-  "feed": []
-},
-{
-  "_id": {
-    "$oid": "65074275dbaa30bfe78fa68b"
+    "name": "Uyên Như",
+    "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+    "description": "",
+    "date": "30/11/2023",
+    "participants": [],
+    "feed": []
   },
-  "name": "Phạm Bảo Thi",
-  "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
-  "description": "",
-  "date": "20/09/2023",
-  "participants": [
-    {
-      "$oid": "65018ca8e031b23c018131d6"
+  {
+    "_id": {
+      "$oid": "65074275dbaa30bfe78fa68b"
     },
-    {
-      "$oid": "65018e8ce031b23c018131e2"
-    }
-  ],
-  "feed": []
-}]
+    "name": "Phạm Bảo Thi",
+    "password": "$2a$10$8fPBUqb6H1ajxK3IxmJ.8.m16YOASfAy9oVjnSuqUQD05sISLrRMK",
+    "description": "",
+    "date": "20/09/2023",
+    "participants": [],
+    "feed": []
+  }
+]

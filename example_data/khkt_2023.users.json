@@ -11,7 +11,8 @@
   "status": "active",
   "date_joined": "01/20/2023",
   "events": [],
-  "departments": []
+  "departments": [],
+  "role": "admin"
 },
 {
   "_id": {
@@ -25,8 +26,13 @@
   "avatar": "",
   "status": "active",
   "date_joined": "10/07/2021",
-  "events": [],
-  "departments": []
+  "events": [
+    {
+      "$oid": "65074251dbaa30bfe78fa689"
+    }
+  ],
+  "departments": [],
+  "role": "manager"
 },
 {
   "_id": {
@@ -41,5 +47,6 @@
   "status": "active",
   "date_joined": "10/09/2021",
   "events": [],
-  "departments": []
+  "departments": [],
+  "role": "member"
 }]
