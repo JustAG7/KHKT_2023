@@ -100,7 +100,8 @@ export default function Example() {
     if(!Cookies.get("token")) navigate("/signin");
   }, [])
   return (
-    <div className="bg-white">
+    <div className="bg-white flex box">
+      <img className="h-12 w-auto absolute" src="Z.png" alt="" />
       <img className="w-full h-screen object-cover" src="HoT System.jpg" alt="" />
     </div>
   )

@@ -68,19 +68,15 @@ function SB() {
             Home
           </MenuItem>
         </Link>
-        <Link to="/department">
-          <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-        </Link>
+        
         <Link to="/event">
           <MenuItem icon={<EventIcon />}>Event</MenuItem>
         </Link>
-        <Link to="/setting">
-          <MenuItem icon={<SettingsIcon />}>Setting</MenuItem>
-        </Link>
+    
         {
           Cookies.get('role') === "admin" && 
-          <Link to="/users">
-            <MenuItem icon={<PeopleOutlinedIcon />}>Users</MenuItem>
+          <Link to="/teams">
+            <MenuItem icon={<PeopleOutlinedIcon />}>Teams</MenuItem>
           </Link>
         }
         <MenuItem icon={<LogoutIcon />} onClick={handleLogOut}>

@@ -33,7 +33,7 @@ export default function App() {
               <Route path="" element={<Setting />} />
               <Route path=":id" element={<Setting />} />
             </Route>
-            <Route path="/users" element={<Users />} />
+            <Route path="/teams" element={<Users />} />
           </Routes>
         </div>
       </div>
