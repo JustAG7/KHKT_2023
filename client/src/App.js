@@ -10,12 +10,13 @@ import Events from "./pages/Events";
 import Sidebar from "./components/Sidebar";
 import Users from "./pages/Users";
 
+
 export default function App() {
   const location = useLocation();
+
   return (
     <div className="w-full">
-      {(location.pathname === "/") &&  <MainPage />}
-      {(location.pathname === "/signin") && <SignIn />}
+      {((location.pathname === "/") || (location.pathname === "/signin")) && <SignIn />}
       {(location.pathname !== "/signin" ) && (location.pathname !== "/") && 
       <div className="flex">
         <Sidebar />

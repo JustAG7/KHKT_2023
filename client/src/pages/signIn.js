@@ -65,7 +65,7 @@ export default function SignIn() {
         <div className="flex justify-evenly items-center  h-screen">
             <div className="flex justify-center items-center w-full max-w-md">
                 <img
-                    src="https://vanphongxanh.vn/wp-content/uploads/2022/03/logo-social.png"
+                    src="Z.png"
                     alt="Logo"
                     className="w-100 h-100 mr-4"
                 />

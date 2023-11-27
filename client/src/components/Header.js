@@ -17,11 +17,11 @@ export default function Example() {
   
   return (
     <header className="bg-white transparent">
-      <nav className=" bg-cover bg-50%_50% bg-blend-normal bg-no-repeat h-screen flex flex-row justify-between  shrink-0 items-start pt-8 pl-10 pr-20">
-        <div className="flex lg:flex-1">
+      
+      <nav className="bg-[url(https://file.rendit.io/n/DIeyO2MrCNcn9OD2NAd5.png)] bg-cover bg-50%_50% bg-blend-normal bg-no-repeat h-screen flex flex-row justify-between  shrink-0 items-start pt-8 pl-10 pr-20">        <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img className="h-8 w-auto" src="/Z.png" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
