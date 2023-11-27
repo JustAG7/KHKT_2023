@@ -18,39 +18,58 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function LocationMarker() {
-  const [position, setPosition] = useState(null);
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
+function isMarkerInsidePolygon(markerPosition, polygonCoordinates) {
+  const x = markerPosition[0];
+  const y = markerPosition[1];
 
-  return position === null ? null : (
-    <>
-      <Marker position={position}>
-        <Popup>You are here</Popup>
-      </Marker>
-      
-    </>
-  );
+  let inside = false;
+  for (let i = 0, j = polygonCoordinates.length - 1; i < polygonCoordinates.length; j = i++) {
+    const xi = polygonCoordinates[i][0];
+    const yi = polygonCoordinates[i][1];
+    const xj = polygonCoordinates[j][0];
+    const yj = polygonCoordinates[j][1];
+
+    const intersect = yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+
+  return inside;
 }
 
 export default function Map() {
-  const [mapCenter, setMapCenter] = useState({ lat: 16.030615, lng: 108.214129});
+  const [mapCenter, setMapCenter] = useState({ lat: 16.030615, lng: 108.214129 });
   const [mapZoom, setMapZoom] = useState(20);
+  const [position, setPosition] = useState(null);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          console.log(latitude, longitude);
+          setPosition({ lat: latitude, lng: longitude });
+          setMapCenter({ lat: latitude, lng: longitude });
+          setMapZoom(20);
+          // console.log(position, mapCenter)
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      // Geolocation is not supported
+      console.error('Geolocation is not supported');
+    }
+  }, []);
 
   return (
     <MapContainer
-      center={mapCenter}
+      center={position || mapCenter} // Use position if available, otherwise fallback to mapCenter
       zoom={mapZoom}
       scrollWheelZoom={false}
-      style={{ width: '100%', height: '400px' }}
+      style={{ width: '100%', height: '600px' }}
     >
+      
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -58,14 +77,40 @@ export default function Map() {
       <Polygon
         positions={[
           [16.030601, 108.213715],
-          
           [16.029904, 108.213861],
           [16.030510, 108.214921],
           [16.030893, 108.214613],
         ]}
         color="blue"
       />
-      <LocationMarker />
+      
+      
+      {
+        position && isMarkerInsidePolygon([position.lat, position.lng], [
+          [16.030601, 108.213715],
+          [16.029904, 108.213861],
+          [16.030510, 108.214921],
+          [16.030893, 108.214613],
+        ]) && (
+          <Marker position={position}>
+            <Popup>You are inside the polygon</Popup>
+          </Marker>
+        )
+      }
+
+      {
+        position && !isMarkerInsidePolygon([position.lat, position.lng], [
+          [16.030601, 108.213715],
+          [16.029904, 108.213861],
+          [16.030510, 108.214921],
+          [16.030893, 108.214613],
+        ]) && (
+          <Marker position={position}>
+            <Popup>You are outside the polygon</Popup>
+          </Marker>
+        )
+      }
     </MapContainer>
   );
 }
+
